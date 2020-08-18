@@ -5,8 +5,9 @@ class Paper {
             density: 1.2,
             friction: 0.5
         }
-        this.body = Bodies.circle(x, y, radius / 2, options);
-        this.radius = radius / 2;
+        this.body = Bodies.circle(x, y, radius, options);
+        this.radius = radius;
+        this.image = loadImage("paper.png");
         World.add(world, this.body);
     }
 
@@ -14,9 +15,10 @@ class Paper {
         var pos = this.body.position;
         push();
         translate(pos.x, pos.y);
-        fill("lightBlue");
-        ellipseMode(RADIUS);
-        ellipse(0, 0, this.radius, this.radius);
+        rotate(this.body.angle);
+        fill(255, 0, 255);
+        imageMode(CORNER);
+        image(this.image, 0, 0, this.radius, this.radius);
         pop();
     }
 }
